@@ -66,7 +66,11 @@
   (stock-tracker-start)
   )
 (require 'init-custom)
-(require 'work-path)
+
+ (if (file-exists-p "~/.emacs.d/lisp/work-path.el") 
+   (require 'work-path)
+   )
+
 (defun py()
   ""
   (interactive)
@@ -94,7 +98,7 @@
 
 ;; 			 ))
 
-(run-at-time "16:55" nil #'switch-to-buffer-other-frame "It's time to write Report. ")
+
 
 (setq-local macros_f "~/.emacs.d/macros") 
 (if (file-exists-p macros_f)
