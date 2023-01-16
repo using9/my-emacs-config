@@ -9,12 +9,11 @@
    (width . 85)
    (height . 40)
    (top . 40)
-   (left . 400)
+   (left . 8)
    (horizontal-scroll-bars . nil)       ;; No horizontal scroll-bars
    (vertical-scroll-bars . nil)         ;; No vertical scroll-bars
    (tool-bar-lines . 0)                 ;; No tool bar
    (menu-bar-lines . 0)                 ;;  No menu bar
-;;   (alpha . 60)
    )
  )
 (setq byte-compile-warnings '( cl-functions))
