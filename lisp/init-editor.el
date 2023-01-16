@@ -63,6 +63,7 @@
  set-mark-command-repeat-pop t
  size-indication-mode t
  tab-width 4                          ; Smaller width for tab characters
+ tramp-default-method "ssh"
  text-quoting-style 'grave
  truncate-lines nil  ;;;;;;;;;
  truncate-partial-width-windows nil
@@ -266,6 +267,7 @@
 (add-hook 'after-init-hook 'show-paren-mode)
 (when (fboundp 'so-long-enable)
   (add-hook 'after-init-hook 'so-long-enable))
+
 
 
 (defun undo-all ()
