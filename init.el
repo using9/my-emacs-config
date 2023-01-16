@@ -27,98 +27,77 @@
 ;; (setq coding-system-for-write 'utf-8)
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
-;;(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-;;(add-to-list 'load-path (expand-file-name "elpa" ))
 (require 'init-complete)
 (require 'init-editor)
 (require 'init-org)
-;;(require 'init-run)
-(if (eq system-type 'windows-nt)
+(require 'init-custom)
+(require 'init-undo-tree)
 
+(if (eq system-type 'windows-nt)
 (require 'init-windows-nt)
 )
 
 (defun flycheck()
-  ""
+  "Start flycheck-mode"
   (interactive)
   (require 'init-flycheck)
   )
 
-
 (defun vlf()
-  ""
+  "Start vlf-mode"
   (interactive)
   (require 'init-vlf)
   (vlf-mode)
   )
 
 (defun news()
-  ""
+  "Start elfeed"
   (interactive)
   (require 'init-elfeed)
   (elfeed)
   )
 
 (defun gushi()
-  ""
+  "Start stock-tracker"
   (interactive)
   (require 'init-stock)
   (stock-tracker-start)
   )
-(require 'init-custom)
+
 
  (if (file-exists-p "~/.emacs.d/lisp/work-path.el") 
+     ;;"work-path is personal file."
    (require 'work-path)
    )
 
 (defun py()
-  ""
+  "Start pyim"
   (interactive)
   (require 'init-pyim)
   (pyim-activate)
   )
 (defun esu()
-  ""
+  "Start esup"
   (interactive)
   (add-to-list 'load-path "~/.emacs.d/elpa/esup")
   (require 'esup)
   (esup)
   )
 
-;; (add-hook 'after-init-hook
-;;           (lambda ()
-;; 			;;(require 'init-consult)
-;; 			(require 'init-complete)
-;; 			(require 'init-vlf)
-;; 			(require 'init-pyim)
-;; 			(require 'init-elfeed)
-;; 			(require 'init-flycheck)
-;; 			(require 'init-stock)
-;; 			(require 'init-org)
-
-;; 			 ))
-
-
-
 (setq-local macros_f "~/.emacs.d/macros") 
 (if (file-exists-p macros_f)
 	(load-file macros_f)
   )
 
-
-    (setq tramp-default-method "ssh")
-;;(add-hook 'after-init-hook 'init-yasnippets))
-
-
-;;(require 'init-gnus)
+ (setq tramp-default-method "ssh")
 
 (defun vi()
-  ""
+  "Start evil-mode"
   (interactive)
 (require 'init-evil)
 )
 
-(require 'init-undo-tree)
+
 (provide 'init)
 
 ;;; init.el ends here
