@@ -31,24 +31,13 @@
   (insert (format-time-string " %m%d "))
   )
 
-
-;; (defun make-today-dir()
-;;   "get today string."
-;;   (interactive)
-;;   (setq todaystr (concat "d:/"  (format-time-string "%Y/%m%d")))
-
-;;   )
-
-
-
 (defun today-dir()
   "open today dir."
   (interactive)
   (setq todaystr (concat "d:\\" (format-time-string "%Y\\%m%d")))
     (unless (file-exists-p todaystr)
     (make-directory todaystr))
-    (call-process-shell-command (concat "explorer " todaystr))
-    
+    (call-process-shell-command (concat "explorer " todaystr))  
 	)
 
 
@@ -88,12 +77,5 @@
 (global-set-key [\M-\S-up] 'move-text-up)
 (global-set-key [\M-\S-down] 'move-text-down)
 
-
-(defun insert-file-name ()
-  (interactive)
-  (comint-dynamic-list-filename-completions)
-  (comint-dynamic-complete-as-filename))
-
-(global-set-key ( kbd "\C-c k" ) 'insert-file-name)
 (provide 'init-custom)
 ;;; init-custom.el ends here
