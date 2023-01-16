@@ -103,12 +103,28 @@
 
 (setq vc-make-backup-files nil)
 
-;;(server-force-delete)
-;; HKEY_CLASSES_ROOT\*\shell\Emacs\command
-;;"d:\soft\emacs28\bin\emacsclientw.exe"  --no-wait --quiet
-;;   --server-file="d:\home\.emacs.d\server\server_file"
-;;   --alternate-editor="d:\soft\emacs29\bin\runemacs.exe" "%0"
 
+
+(set-face-attribute 'default nil :font  (font-spec :family "新宋体" :size 16 :powerline-scale 0.8))
+;;(if (eq system-type 'windows-nt)
+;;	(set-face-attribute 'default nil :font  (font-spec :family "ÐÂËÎÌå" :size 16 :powerline-scale 0.8))
+;;  (dolist (charset '(kana han symbol cjk-misc bopomofo))
+;;	(set-fontset-font (frame-parameter nil 'font) charset
+;;                      (font-spec :family "ººÒÇÌÆÃÀÈË 55W" :size 18 :powerline-scale 0.8))) 
+
+  (setenv "PATH" (concat "~/.emacs.d/bin" ";"  (getenv "PATH"))  )
+
+(defun explorer_it()
+  "open file manager open current dired."
+  (interactive)
+  (if (eq system-type 'windows-nt)
+      (shell-command (concat "explorer ."))))
+
+;; -- server mode config for Windows OS.
+;; HKEY_CLASSES_ROOT\*\shell\Emacs\command
+;;"emacs-path\bin\emacsclientw.exe"  --no-wait --quiet
+;;   --server-file="d:\home\server\server_file"
+;;   --alternate-editor="emacs-path\bin\runemacs.exe" "%0"
 (setq server-auth-dir (concat abn-cache-dir "/server")
 	  server-name "server_file")
 (add-hook 'after-init-hook 'server-mode)
@@ -150,8 +166,6 @@
 	  use-short-answers t
 	  )
 
-
-
 (add-hook 'buffer-list-update-hook 'recentf-track-opened-file)
 (setq recentf-save-file (concat abn-cache-dir "/recentf"))
 (setq-default
@@ -175,9 +189,6 @@
 
 (setq epa-file-select-keys 0)
 (setq epa-file-cache-passphrase-for-symmetric-encryption t)
-
-
-
 
 ;;tramp
 (setq remote-file-name-inhibit-cache 60
@@ -295,16 +306,13 @@
   ;;  my-flycheck-mode-line
   ;; "> "
   " { "
-  '(:eval (propertize (format-time-string "%H:%M %b%d�� %a") 'face 'font-lock-keyword-face
+  '(:eval (propertize (format-time-string "%H:%M %b%dÈÕ %a") 'face 'font-lock-keyword-face
                       'help-echo
                       (concat (format-time-string "%c; ")
                               (emacs-uptime "Uptime:%hh"))))
   " } "
 
   ))
-
-
-
 
 ;;; esc always quits
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
