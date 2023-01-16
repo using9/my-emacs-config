@@ -123,6 +123,17 @@
   (esup)
   )
 
+(defun vi()
+  "Start evil-mode"
+  (interactive)
+  (add-to-list 'load-path "~/.emacs.d/elpa/evil-master")
+  (require 'evil)
+  (evil-mode 1)
+  (setq evil-shift-width 0)
+  (setq evil-move-cursor-back t)
+  (define-key evil-normal-state-map "\C-q" 'evil-visual-block)
+ )
+
 
 
 (provide 'init-custom)
