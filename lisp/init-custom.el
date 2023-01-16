@@ -77,5 +77,53 @@
 (global-set-key [\M-\S-up] 'move-text-up)
 (global-set-key [\M-\S-down] 'move-text-down)
 
+(defun flycheck()
+  "Start flycheck-mode"
+  (interactive)
+  (require 'init-flycheck)
+  )
+
+(defun vlf()
+  "Start vlf-mode"
+  (interactive)
+  (require 'init-vlf)
+  (vlf-mode)
+  )
+
+(defun news()
+  "Start elfeed"
+  (interactive)
+  (require 'init-elfeed)
+  (elfeed)
+  )
+
+(defun gushi()
+  "Start stock-tracker"
+  (interactive)
+  (require 'init-stock)
+  (stock-tracker-start)
+  )
+
+ (if (file-exists-p "~/.emacs.d/lisp/work-path.el") 
+     ;;"work-path is personal file."
+   (require 'work-path)
+   )
+
+(defun py()
+  "Start pyim"
+  (interactive)
+  (require 'init-pyim)
+  (pyim-activate)
+  )
+(defun esu()
+  "Start esup"
+  (interactive)
+  (add-to-list 'load-path "~/.emacs.d/elpa/esup")
+  (require 'esup)
+  (esup)
+  )
+
+
+
 (provide 'init-custom)
 ;;; init-custom.el ends here
