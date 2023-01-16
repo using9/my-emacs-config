@@ -8,7 +8,7 @@
 ;;; ============== other require ends.=======================================
 
 ;;; =========================================================================
-;; orderless start  Œﬁ–Ú
+;; orderless start  Êó†Â∫è
 ;;; address: git://github.com/oantolin/orderless
 (add-to-list 'load-path "~/.emacs.d/elpa/orderless")
 (require 'orderless)
@@ -19,7 +19,7 @@
 ;;; =========================================================================
 
 ;;; =========================================================================
-;; vertico start  minibuffer ¥π÷±œ‘ æ≤π»´
+;; vertico start  minibuffer ÂûÇÁõ¥ÊòæÁ§∫Ë°•ÂÖ®
 ;;; address: git://github.com/minad/vertico
 (add-to-list 'load-path "~/.emacs.d/elpa/vertico")
 (add-to-list 'load-path "~/.emacs.d/elpa/vertico/extensions")
@@ -41,7 +41,7 @@
 
 
 ;;; =========================================================================
-;; marginalia  ◊¢ Õ”√ minibuffer
+;; marginalia  Ê≥®ÈáäÁî® minibuffer
 ;;; address: git://github.com/minad/marginalia
 (add-to-list 'load-path "~/.emacs.d/elpa/marginalia")
 (require 'marginalia)
@@ -60,8 +60,8 @@
 (add-to-list 'completion-at-point-functions #'cape-dabbrev)
 (add-to-list 'completion-at-point-functions #'cape-file)
 (add-to-list 'completion-at-point-functions #'cape-line)
- (defalias 'cape-dabbrev+file
-   (cape-super-capf #'cape-dabbrev #'cape-file))
+(defalias 'cape-dabbrev+file
+  (cape-super-capf #'cape-dabbrev #'cape-file))
 (setq-local completion-at-point-functions (list #'cape-dabbrev+file))
 
 ;;===========================corfu =====================================
@@ -164,22 +164,36 @@
 ;; For some commands and buffer sources it is useful to configure the
 ;; :preview-key on a per-command basis using the `consult-customize' macro.
 (consult-customize
- consult-theme
+ consult-theme :preview-key nil
+ consult-buffer :preview-key (kbd "M-.")
  consult-ripgrep consult-git-grep consult-grep
- consult-bookmark consult-recent-file;; consult-xref
+ consult-bookmark consult-recent-file 
  consult--source-recent-file consult--source-project-recent-file consult--source-bookmark
- :preview-key '(:debounce 0.2 any)
+ consult-line :prompt "Search: "
+ :preview-key (list (kbd "<S-down>") (kbd "<S-up>"))
+ ;; :preview-key '(:debounce 0.2 any)
  ;;:preview-key (kbd "M-."))
  )
+
+(setq consult--source-bookmark
+      (plist-put
+       consult--source-bookmark :items
+       (lambda ()
+         (bookmark-maybe-load-default-file)
+         (mapcar #'car
+                 (seq-remove (lambda (x)
+                               (eq #'bookmark-view-handler
+                                   (alist-get 'handler (cdr x))))
+                             bookmark-alist)))))
 
 ;; Optionally configure the narrowing key.
 ;; Both < and C-+ work reasonably well.
 (setq consult-narrow-key "<"
-        consult-line-numbers-widen t
-        consult-async-min-input 2
-        consult-async-refresh-delay  0.15
-        consult-async-input-throttle 0.2
-        consult-async-input-debounce 0.1
+      consult-line-numbers-widen t
+      consult-async-min-input 2
+      consult-async-refresh-delay  0.15
+      consult-async-input-throttle 0.2
+      consult-async-input-debounce 0.1
 	  ) ;; (kbd "C-+")
 
 
