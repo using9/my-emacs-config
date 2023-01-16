@@ -69,7 +69,7 @@
  truncate-partial-width-windows nil
  uniquify-buffer-name-style 'post-forward-angle-brackets
  window-combination-resize t           ; Resize windows proportionally
-;; confirm-kill-emacs 'y-or-n-p
+ ;; confirm-kill-emacs 'y-or-n-p
  )                                      ; Stretch cursor to the glyph width
 
 (blink-cursor-mode 0)                   ; Prefer a still cursor
@@ -92,7 +92,7 @@
 (let* ((backup-dir (expand-file-name "~/.backups")))
   (unless (file-exists-p backup-dir) (make-directory backup-dir)))
 (setq-default
-;; make-backup-files t
+ ;; make-backup-files t
  backup-by-copying t
  backup-directory-alist `(("." . "~/backups/"))
  delete-old-versions t
@@ -104,8 +104,6 @@
 
 (setq vc-make-backup-files nil)
 
-
-
 (set-face-attribute 'default nil :font  (font-spec :family "新宋体" :size 16 :powerline-scale 0.8))
 ;;(if (eq system-type 'windows-nt)
 ;;	(set-face-attribute 'default nil :font  (font-spec :family "ÐÂËÎÌå" :size 16 :powerline-scale 0.8))
@@ -113,7 +111,7 @@
 ;;	(set-fontset-font (frame-parameter nil 'font) charset
 ;;                      (font-spec :family "ººÒÇÌÆÃÀÈË 55W" :size 18 :powerline-scale 0.8))) 
 
-  (setenv "PATH" (concat "~/.emacs.d/bin" ";"  (getenv "PATH"))  )
+(setenv "PATH" (concat "~/.emacs.d/bin" ";"  (getenv "PATH"))  )
 
 (defun explorer_it()
   "open file manager open current dired."
@@ -139,42 +137,32 @@
   (auto-save-visited-mode t)
   )
 
-
 (require 'dired)
-;;(with-eval-after-load 'dired
-(setq dired-auto-revert-buffer t
-      dired-dwim-target t
-      dired-hide-details-hide-symlink-targets t
-      dired-listing-switches "-alh --group-directoy"
-      dired-ls-F-marks-symlinks nil
-      dired-recursive-copies 'always
-	  )
- ;; (dired-hide-details-mode 1)
- ;; (diredfl-mode)
-(define-key dired-mode-map "o" 'dired-open-files)
-(define-key dired-mode-map "h" 'dired-up-directory)
-(define-key dired-mode-map "j" 'dired-next-line)
-(define-key dired-mode-map "k" 'dired-previous-line)
-(define-key dired-mode-map "l" 'dired-single-buffer)
-(define-key ctl-x-map "\C-j" 'dired-jump)
-(define-key ctl-x-4-map "\C-j" 'dired-jump-other-window)
-(let ((gls (executable-find "gls")))
-  (when gls (setq insert-directory-program gls)))
-;;)
+(with-eval-after-load 'dired
+  (setq dired-auto-revert-buffer t
+		dired-dwim-target t
+		dired-hide-details-hide-symlink-targets t
+		dired-listing-switches "-alh --group-directoy"
+		dired-ls-F-marks-symlinks nil
+		dired-recursive-copies 'always
+		)
+ )
+
+  (define-key dired-mode-map "o" 'dired-open-files)
+  (define-key dired-mode-map "h" 'dired-up-directory)
+  (define-key dired-mode-map "j" 'dired-next-line)
+  (define-key dired-mode-map "k" 'dired-previous-line)
+  (define-key dired-mode-map "l" 'dired-single-buffer)
+  (define-key ctl-x-map "\C-j" 'dired-jump)
+  (define-key ctl-x-4-map "\C-j" 'dired-jump-other-window)
+  
+  (let ((gls (executable-find "gls")))
+	(when gls (setq insert-directory-program gls)))
 
 (setq set-mark-command-repeat-pop t
 	  y-or-n-p-use-read-key t
 	  use-short-answers t
 	  )
-
-(add-hook 'buffer-list-update-hook 'recentf-track-opened-file)
-(setq recentf-save-file (concat abn-cache-dir "/recentf"))
-(setq-default
- recentf-max-saved-items 200
- recentf-exclude `("/tmp/" "/ssh:"  "/rum"))
-
-(setq revert-buffer-quick-short-answers t)
-
 
 (setq enable-recursive-minibuffers t ; Allow commands in minibuffers
       history-length 100
@@ -205,8 +193,6 @@
 
      ;;; eww inhibi
 (setq shr-inhibit-images t)
-
-
 
 (defun sanityinc/toggle-delete-other-windows ()
   "Delete other windows in frame if any, or restore previous window config."
@@ -247,28 +233,36 @@
   (add-hook 'after-init-hook 'electric-pair-mode))
 (add-hook 'after-init-hook 'electric-indent-mode)
 (add-hook 'after-init-hook 'winner-mode)
-(add-hook 'after-init-hook 'recentf-mode)
+(add-hook 'after-init-hook 'recentf-mode)		  
 (add-hook 'after-init-hook 'savehist-mode)
 (add-hook 'after-init-hook 'save-place-mode)
 (add-hook 'after-init-hook 'global-auto-revert-mode)
 ;;(add-hook 'after-init-hook 'global-highlight-changes-mode)
 (add-hook 'after-init-hook 'global-hl-line-mode)
 (add-hook 'after-init-hook 'global-subword-mode)
-
-(setq global-auto-revert-non-file-buffers t
-      auto-revert-verbose nil
-      auto-revert-use-notify nil
-      auto-revert-stop-on-user-input nil)
-(with-eval-after-load 'autorevert
-  (add-hook 'after-init-hook 'auto-revert-mode))
-
+(add-hook 'after-init-hook 'auto-revert-mode)
 (add-hook 'after-init-hook 'transient-mark-mode)
 (add-hook 'after-init-hook 'delete-selection-mode)
 (add-hook 'after-init-hook 'show-paren-mode)
+
+(with-eval-after-load 'autorevert
+  (setq global-auto-revert-non-file-buffers t
+		auto-revert-verbose nil
+		auto-revert-use-notify nil
+		auto-revert-stop-on-user-input nil
+		revert-buffer-quick-short-answers t))
+
 (when (fboundp 'so-long-enable)
   (add-hook 'after-init-hook 'so-long-enable))
 
 
+(with-eval-after-load 'recentf-mode
+  (add-hook 'buffer-list-update-hook 'recentf-track-opened-file)
+  (setq recentf-save-file (concat abn-cache-dir "/recentf"))
+  (setq-default
+   recentf-max-saved-items 200
+   recentf-exclude `("/tmp/" "/ssh:"  "/rum"))
+  )
 
 (defun undo-all ()
   "Undo all edits."
