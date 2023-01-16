@@ -5,7 +5,7 @@
 (setq abn-cache-dir "~/.emacs.d/")
 
 (load-theme 'misterioso)
-
+(cd "~")
 (set-face-background 'show-paren-match "#262b36")
 (set-face-bold 'show-paren-match t)
 (set-face-foreground 'show-paren-match "#ffffff")
@@ -314,6 +314,11 @@
 
   ))
 
+
+(setq-local macros_f "~/.emacs.d/macros") 
+(if (file-exists-p macros_f)
+	(load-file macros_f)
+  )
 ;;; esc always quits
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
 (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
