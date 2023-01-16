@@ -29,5 +29,12 @@
   (if (eq system-type 'windows-nt)
       (shell-command (concat "explorer ."))))
 
+
+;; -- server mode config.
+;; HKEY_CLASSES_ROOT\*\shell\Emacs\command
+;;"emacspath\bin\emacsclientw.exe"  --no-wait --quiet
+;;   --server-file="d:\home\server\server_file"
+;;   --alternate-editor="emacs-path\bin\runemacs.exe" "%0"
+
 (provide 'init-windows-nt)
 
