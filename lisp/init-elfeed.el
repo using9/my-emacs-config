@@ -8,19 +8,18 @@
 (setq elfeed-feeds
       '("https://xueqiu.com/hots/topic/rss" 
 		"https://dig.chouti.com/feed.xml"
-        "https://plink.anyfeeder.com/thepaper"
+                "https://plink.anyfeeder.com/thepaper"
 		"https://plink.anyfeeder.com/idaily/today"
 		"https://plink.anyfeeder.com/bjnews"
 		"https://plink.anyfeeder.com/jiemian/news"
 		"https://plink.anyfeeder.com/netease/today"
 		"https://plink.anyfeeder.com/infzm/news"
-		"http://www.people.com.cn/rss/politics.xml"
 		"http://www.people.com.cn/rss/world.xml"
-		"https://www.chinanews.com.cn/rss/scroll-news.xml"
 		"http://news.hexun.com/rss/"
 		"http://app.xinhua08.com/rss.php"
 		"https://www.zhihu.com/rss"
 		))
+
 
 (setq-local line-spacing 0.8) 
 
@@ -39,32 +38,7 @@
 
   )
 
-
-  ;; (defun hrs/custom-elfeed-sort (a b)
-  ;;   (let* ((a-tags (format "%s" (elfeed-entry-tags a)))
-  ;;          (b-tags (format "%s" (elfeed-entry-tags b)))
-  ;;          (a-title (elfeed-feed-title (elfeed-entry-feed a)))
-  ;;          (b-title (elfeed-feed-title (elfeed-entry-feed b))))
-  ;;     (if (string= a-tags b-tags)
-  ;;         (if (string= a-title b-title)
-  ;;             (< (elfeed-entry-date b) (elfeed-entry-date a))
-  ;;           (string< b-title a-title))
-  ;;       (string< a-tags b-tags))))
-  ;; (setf elfeed-search-sort-function #'hrs/custom-elfeed-sort)
-
 (elfeed-set-max-connections 32)
-
-
-
-;; (with-elfeed-db-visit (entry _)
-;;   (setf (elfeed-entry-content entry) nil))
-
-;; (elfeed-db-gc)  ;; garbage collect everything
-
-;; (add-hook 'elfeed-new-entry-hook
-;;           (lambda (entry) (setf (elfeed-entry-content entry) nil)))
-
-
 
 (custom-set-faces
  '(elfeed-search-date-face
