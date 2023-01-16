@@ -32,14 +32,6 @@
 (require 'init-custom)
 (require 'init-undo-tree)
 
- (setq tramp-default-method "ssh")
-
-(defun vi()
-  "Start evil-mode"
-  (interactive)
-(require 'init-evil)
-)
-
 (provide 'init)
 
 ;;; init.el ends here
