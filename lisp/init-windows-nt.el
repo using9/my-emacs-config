@@ -4,11 +4,12 @@
 ;;;
 
 
-(if (eq system-type 'windows-nt)
-	(set-face-attribute 'default nil :font  (font-spec :family "–¬ÀŒÃÂ" :size 16 :powerline-scale 0.8))
-  (dolist (charset '(kana han symbol cjk-misc bopomofo))
-	(set-fontset-font (frame-parameter nil 'font) charset
-                      (font-spec :family "∫∫“«Ã∆√¿»À 55W" :size 18 :powerline-scale 0.8))) 
+(set-face-attribute 'default nil :font  (font-spec :family "Êñ∞ÂÆã‰Ωì" :size 16 :powerline-scale 0.8))
+;;(if (eq system-type 'windows-nt)
+;;	(set-face-attribute 'default nil :font  (font-spec :family "√ê√Ç√ã√é√å√•" :size 16 :powerline-scale 0.8))
+;;  (dolist (charset '(kana han symbol cjk-misc bopomofo))
+;;	(set-fontset-font (frame-parameter nil 'font) charset
+;;                      (font-spec :family "¬∫¬∫√í√á√å√Ü√É√Ä√à√ã 55W" :size 18 :powerline-scale 0.8))) 
 
   (setenv "PATH" (concat "~/.emacs.d/bin" ";"  (getenv "PATH"))  )
 
