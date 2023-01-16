@@ -33,10 +33,6 @@
 (require 'init-custom)
 (require 'init-undo-tree)
 
-(if (eq system-type 'windows-nt)
-(require 'init-windows-nt)
-)
-
 (defun flycheck()
   "Start flycheck-mode"
   (interactive)
@@ -63,7 +59,6 @@
   (require 'init-stock)
   (stock-tracker-start)
   )
-
 
  (if (file-exists-p "~/.emacs.d/lisp/work-path.el") 
      ;;"work-path is personal file."
@@ -96,7 +91,6 @@
   (interactive)
 (require 'init-evil)
 )
-
 
 (provide 'init)
 
