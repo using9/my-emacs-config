@@ -13,16 +13,6 @@
 
   (setenv "PATH" (concat "~/.emacs.d/bin" ";"  (getenv "PATH"))  )
 
-  
-
-  (if (file-directory-p "d:/")
-	  (unless (file-directory-p (concat "d:/" (format-time-string "%Y/")))
-		(make-directory (concat "d:/" (format-time-string "%Y/")))
-	    )
-	)
-  ;; (make-today-dir)
-  )
-
 (defun explorer_it()
   "open file manager open current dired."
   (interactive)
