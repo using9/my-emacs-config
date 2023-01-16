@@ -194,7 +194,7 @@
      ;;; eww inhibi
 (setq shr-inhibit-images t)
 
-(defun sanityinc/toggle-delete-other-windows ()
+(defun toggle-delete-other-windows ()
   "Delete other windows in frame if any, or restore previous window config."
   (interactive)
   (if (and winner-mode
@@ -224,9 +224,9 @@
 
 
 
-(global-set-key (kbd "C-x 1") 'sanityinc/toggle-delete-other-windows)
-(global-set-key (kbd "C-x 2") (split-window-func-with-other-buffer2))
-(global-set-key (kbd "C-x 3") (split-window-func-with-other-buffer3))
+(global-set-key (kbd "C-x 1") 'toggle-delete-other-windows)
+(global-set-key (kbd "C-x 2") 'split-window-func-with-other-buffer2)
+(global-set-key (kbd "C-x 3") 'split-window-func-with-other-buffer3)
 
 
 (when (fboundp 'electric-pair-mode)
