@@ -106,7 +106,7 @@
 
  (if (file-exists-p "~/.emacs.d/lisp/work-path.el") 
      ;;"work-path is personal file."
-   (require 'work-path)
+	 (require 'work-path)
    )
 
 (defun py()

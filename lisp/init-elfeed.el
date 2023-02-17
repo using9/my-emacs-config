@@ -1,9 +1,13 @@
 (require 'elfeed)
-;;(global-set-key (kbd "C-x w") 'elfeed)
 (setq-default elfeed-search-filter "@1-day-ago +unread ")
-(add-hook 'elfeed-new-entry-hook
-          (elfeed-make-tagger :before "1 days ago"
-                              :remove 'unread))
+(setq elfeed-show-mode-hook
+      (lambda ()
+		(set-face-attribute 'variable-pitch (selected-frame) :font (font-spec :family "ÐÂËÎÌå" :size 14 :powerline-scale 0.8))
+		(setq line-spacing 0.5) 
+		(setq elfeed-show-entry-switch #'switch-to-buffer)))
+(setq elfeed-search-mode-hook
+	  (lambda ()
+		(setq line-spacing 0.5)))
 
 (setq elfeed-feeds
       '("https://xueqiu.com/hots/topic/rss" 
@@ -18,10 +22,8 @@
 		"http://news.hexun.com/rss/"
 		"http://app.xinhua08.com/rss.php"
 		"https://www.zhihu.com/rss"
+		"https://feedx.best/rss/jiemian.xml"
 		))
-
-
-(setq-local line-spacing 0.8) 
 
 (with-eval-after-load 'elfeed
   (setq elfeed-show-entry-switch #'display-buffer
@@ -38,6 +40,7 @@
 
   )
 
+;;(setq-local line-spacing 0.8) 
 (elfeed-set-max-connections 32)
 
 (custom-set-faces

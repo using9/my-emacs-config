@@ -2,9 +2,11 @@
 
 
 # Install :
-  > Just download ,and unzip to ~/.emacs.d directory.
+  >git: git clone https://github.com/using9/my-emacs-config.git ~/.emacs.d
+  >zip: download ,and unzip to ~/.emacs.d directory.
 
-# List packagesï¼š
+# List packages£º
+  + awesome-tray
   + cape
   + consult
   + corfu

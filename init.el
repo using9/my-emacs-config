@@ -3,14 +3,11 @@
 ;;; Code:
 ;;;
 
-
-(let ((default-directory user-emacs-directory)
-      (file-name-handler-alist nil)
-	  (gc-cons-percentage .5)
-	  (gc-cons-threshold most-positive-fixnum)
-	  (read-process-output-max (* 1024 1024)))
-
-  )
+(add-hook 'after-init-hook (lambda()
+							 (let ((gc-cons-percentage .5)
+								   (gc-cons-threshold most-positive-fixnum)
+								   (read-process-output-max (* 1024 1024)))
+							   )))
 
 (add-hook 'emacs-startup-hook
           (lambda ()
@@ -30,10 +27,8 @@
 (require 'init-editor)
 (require 'init-org)
 (require 'init-custom)
+(require 'init-awesome-tray)
 (require 'init-undo-tree)
 
 (provide 'init)
-
-;;; init.el ends here
-
 

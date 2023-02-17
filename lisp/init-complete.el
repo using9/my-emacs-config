@@ -8,7 +8,7 @@
 ;;; ============== other require ends.=======================================
 
 ;;; =========================================================================
-;; orderless start  æ— åº
+;; orderless start  ÎŞĞò
 ;;; address: git://github.com/oantolin/orderless
 (add-to-list 'load-path "~/.emacs.d/elpa/orderless")
 (require 'orderless)
@@ -19,7 +19,7 @@
 ;;; =========================================================================
 
 ;;; =========================================================================
-;; vertico start  minibuffer å‚ç›´æ˜¾ç¤ºè¡¥å…¨
+;; vertico start  minibuffer ´¹Ö±ÏÔÊ¾²¹È«
 ;;; address: git://github.com/minad/vertico
 (add-to-list 'load-path "~/.emacs.d/elpa/vertico")
 (add-to-list 'load-path "~/.emacs.d/elpa/vertico/extensions")
@@ -41,7 +41,7 @@
 
 
 ;;; =========================================================================
-;; marginalia  æ³¨é‡Šç”¨ minibuffer
+;; marginalia  ×¢ÊÍÓÃ minibuffer
 ;;; address: git://github.com/minad/marginalia
 (add-to-list 'load-path "~/.emacs.d/elpa/marginalia")
 (require 'marginalia)
@@ -101,10 +101,10 @@
     (corfu-mode 1)))
 (add-hook 'minibuffer-setup-hook #'corfu-enable-always-in-minibuffer 1)
 
-(add-hook 'eshell-mode-hook
-		  (lambda ()
-			(setq-local corfu-auto t)
-			(corfu-mode)))
+;; (add-hook 'eshell-mode-hook
+;; 		  (lambda ()
+;; 			(setq-local corfu-auto t)
+;; 			(corfu-mode)))
 ;;; ============================ corfe end===================================
 
 (setq read-file-name-completion-ignore-case t

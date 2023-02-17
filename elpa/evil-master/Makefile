@@ -1,5 +1,5 @@
 SHELL = /bin/sh
-EMACS ?= emacs
+EMACS ?= d:/soft/emacs-28.2/bin/emacs.exe
 SED ?= sed
 FILES = $(filter-out evil-test-helpers.el evil-tests.el evil-pkg.el,$(wildcard evil*.el))
 VERSION := $(shell $(SED) -ne '/define-package/,$$p' evil-pkg.el | $(SED) -ne '/^\s*"[[:digit:]]\+\(\.[[:digit:]]\+\)*"\s*$$/ s/^.*"\(.*\)".*$$/\1/p')

@@ -45,5 +45,5 @@
 (let ((org-time-stamp-custom-formats
        '("<%A, %B %d, %Y>" . "<%A, %B %d, %Y %H:%M>"))
       (org-display-custom-times 't)))
-
+(setq org-export-backends (quote (ascii html icalendar latex md)))
 (provide 'init-org)

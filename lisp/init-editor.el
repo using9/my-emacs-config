@@ -5,6 +5,7 @@
 (setq abn-cache-dir "~/.emacs.d/")
 
 (load-theme 'misterioso)
+
 (cd "~")
 (set-face-background 'show-paren-match "#262b36")
 (set-face-bold 'show-paren-match t)
@@ -156,9 +157,7 @@
   (define-key ctl-x-map "\C-j" 'dired-jump)
   (define-key ctl-x-4-map "\C-j" 'dired-jump-other-window)
   
-  (let ((gls (executable-find "gls")))
-	(when gls (setq insert-directory-program gls)))
-
+ 
 (setq set-mark-command-repeat-pop t
 	  y-or-n-p-use-read-key t
 	  use-short-answers t
@@ -225,8 +224,8 @@
 
 
 (global-set-key (kbd "C-x 1") 'toggle-delete-other-windows)
-(global-set-key (kbd "C-x 2") 'split-window-func-with-other-buffer2)
-(global-set-key (kbd "C-x 3") 'split-window-func-with-other-buffer3)
+(global-set-key (kbd "C-x 2") (split-window-func-with-other-buffer2))
+(global-set-key (kbd "C-x 3") (split-window-func-with-other-buffer3))
 
 
 (when (fboundp 'electric-pair-mode)
@@ -273,42 +272,42 @@
     (undo-more 1))
   (message "Buffer was completely undone"))
 
+;;; ------- will use awesome-tray ,comment this.
+;; (setq-default
+;;  mode-line-format
+;;  (list
+;;   ;; the buffer name; the file name as a tool tip
+;;   '(:eval (propertize " %+ " 'face 'font-lock-keyword-face
+;;                       ))
+;;   " "
+;;   '(:eval (propertize " %b " 'face 'font-lock-keyword-face
+;;                       'help-echo (buffer-file-name)))
+;;   ;; line and column
+;;   "(" ;; '%02' to set to 2 chars at least; prevents flickering
+;;   (propertize "L%02l" 'face 'font-lock-type-face) ","
+;;   (propertize "%01c" 'face 'font-lock-type-face)
+;;   ") "
+;;   "["
+;;   (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
+;;   "/"
+;;   (propertize "%I" 'face 'font-lock-constant-face) ;; size
+;;   "] "
+;;   " ["
+;;   (propertize "%m" 'face 'font-lock-constant-face)
+;;   "] "
+;;     ;;; flycheck number
+;;   ;; " <"
+;;   ;; "%1 "
+;;   ;;  my-flycheck-mode-line
+;;   ;; "> "
+;;   " { "
+;;   '(:eval (propertize (format-time-string "%H:%M %b%dÈÕ %a") 'face 'font-lock-keyword-face
+;;                       'help-echo
+;;                       (concat (format-time-string "%c; ")
+;;                               (emacs-uptime "Uptime:%hh"))))
+;;   " } "
 
-(setq-default
- mode-line-format
- (list
-  ;; the buffer name; the file name as a tool tip
-  '(:eval (propertize " %+ " 'face 'font-lock-keyword-face
-                      ))
-  " "
-  '(:eval (propertize " %b " 'face 'font-lock-keyword-face
-                      'help-echo (buffer-file-name)))
-  ;; line and column
-  "(" ;; '%02' to set to 2 chars at least; prevents flickering
-  (propertize "L%02l" 'face 'font-lock-type-face) ","
-  (propertize "%01c" 'face 'font-lock-type-face)
-  ") "
-  "["
-  (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
-  "/"
-  (propertize "%I" 'face 'font-lock-constant-face) ;; size
-  "] "
-  " ["
-  (propertize "%m" 'face 'font-lock-constant-face)
-  "] "
-    ;;; flycheck number
-  ;; " <"
-  ;; "%1 "
-  ;;  my-flycheck-mode-line
-  ;; "> "
-  " { "
-  '(:eval (propertize (format-time-string "%H:%M %b%dÈÕ %a") 'face 'font-lock-keyword-face
-                      'help-echo
-                      (concat (format-time-string "%c; ")
-                              (emacs-uptime "Uptime:%hh"))))
-  " } "
-
-  ))
+;;   ))
 
 
 (setq-local macros_f "~/.emacs.d/macros") 

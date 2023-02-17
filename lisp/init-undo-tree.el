@@ -4,7 +4,7 @@
 (with-eval-after-load 'undo-tree
   (unless (file-directory-p "~/.emacs.d/undo-tree")
 	(make-directory "~/.emacs.d/undo-tree"))
-  (global-undo-tree-mode)
+
   (setq undo-tree-history-directory-alist `(("." . ,(concat user-emacs-directory "undo-tree")))
 		undo-tree-enable-undo-in-region nil
 		undo-tree-visualizer-diff t
@@ -13,7 +13,7 @@
 		undo-strong-limit 100663296
 		undo-outer-limit 1006632960)
   )
-
+  (global-undo-tree-mode)
 
 
 
