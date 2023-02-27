@@ -7,3 +7,5 @@
 (setq evil-move-cursor-back t)
 (define-key evil-normal-state-map "\C-q" 'evil-visual-block)
 (provide 'init-evil)
+
+

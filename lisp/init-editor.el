@@ -104,8 +104,9 @@
  create-lockfiles nil)
 
 (setq vc-make-backup-files nil)
-
+(if (eq system-type 'windows-nt)
 (set-face-attribute 'default nil :font  (font-spec :family "新宋体" :size 16 :powerline-scale 0.8))
+)
 ;;(if (eq system-type 'windows-nt)
 ;;	(set-face-attribute 'default nil :font  (font-spec :family "ÐÂËÎÌå" :size 16 :powerline-scale 0.8))
 ;;  (dolist (charset '(kana han symbol cjk-misc bopomofo))
@@ -327,7 +328,9 @@
 
 (setq eww-mode-hook
       (lambda ()
-		(set-face-attribute 'variable-pitch (selected-frame) :font (font-spec :family "新宋体" :size 14 :powerline-scale 0.8))
+		(if (eq system-type 'windows-nt)
+			(set-face-attribute 'variable-pitch (selected-frame) :font (font-spec :family "新宋体" :size 14 :powerline-scale 0.8))
+		  )
 		(setq line-spacing 0.5)
 		))
 
