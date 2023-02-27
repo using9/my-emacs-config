@@ -20,9 +20,9 @@
 		"https://plink.anyfeeder.com/infzm/news"
 		"http://www.people.com.cn/rss/world.xml"
 		"http://news.hexun.com/rss/"
-		"http://app.xinhua08.com/rss.php"
+	;;	"http://app.xinhua08.com/rss.php"
 		"https://www.zhihu.com/rss"
-		"https://feedx.best/rss/jiemian.xml"
+;;		"https://feedx.best/rss/jiemian.xml"
 		))
 
 (with-eval-after-load 'elfeed

@@ -324,5 +324,12 @@
 
 ;;(global-set-key (kbd "<escape>")      'keyboard-escape-quit)
 
+
+(setq eww-mode-hook
+      (lambda ()
+		(set-face-attribute 'variable-pitch (selected-frame) :font (font-spec :family "新宋体" :size 14 :powerline-scale 0.8))
+		(setq line-spacing 0.5)
+		))
+
 (provide 'init-editor)
 ;;; init-editor.el ends here
