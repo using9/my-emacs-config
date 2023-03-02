@@ -90,17 +90,17 @@
   (vlf-mode)
   )
 
-(defun news()
-  "Start elfeed"
-  (interactive)
-  (require 'init-elfeed)
-  (elfeed)
-  )
+;; (defun news()
+;;   "Start elfeed"
+;;   (interactive)
+;;   (require 'init-elfeed)
+;;   (elfeed)
+;;   )
 
 (defun gushi()
   "Start stock-tracker"
   (interactive)
-  (require 'init-stock)
+ (require 'init-stock)
   (stock-tracker-start)
   )
 
@@ -134,7 +134,11 @@
   (define-key evil-normal-state-map "\C-q" 'evil-visual-block)
  )
 
-
+(defun only()
+  "Delete other frames"
+  (interactive)
+  (delete-other-frames)
+  )
 
 (provide 'init-custom)
 ;;; init-custom.el ends here

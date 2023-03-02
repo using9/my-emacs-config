@@ -15,7 +15,10 @@
 ;; define custom keys
 (global-set-key [f3] 'ibuffer)
 (global-set-key [f4] 'kill-this-buffer)
-;;(global-set-key [f8] '(dired-jump other-frame  '(concat "d:\\" (format-time-string "%Y\\%m%d"))))
+(global-set-key [f5] 'revert-buffer)
+(global-set-key [f7] 'delete-other-frames)
+
+(global-set-key [f8] '(dired-jump other-frame  '(concat "d:\\" (format-time-string "%Y\\%m%d"))))
 (global-set-key [f11] 'toggle-frame-fullscreen)
 (global-set-key [f12] 'yank)
 (global-set-key (kbd "C-x r v") 'list-registers)
@@ -148,6 +151,7 @@
 		dired-ls-F-marks-symlinks nil
 		dired-recursive-copies 'always
 		)
+  (add-hook 'dired-mode-hook  #'dired-hide-details-mode)
  )
 
   (define-key dired-mode-map "o" 'dired-open-files)

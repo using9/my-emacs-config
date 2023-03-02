@@ -1,4 +1,5 @@
-(require 'elfeed)
+;;(require 'elfeed)
+(require 'elfeed-autoloads)
 (setq-default elfeed-search-filter "@1-day-ago +unread ")
 (setq elfeed-show-mode-hook
       (lambda ()

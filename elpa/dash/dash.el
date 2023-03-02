@@ -10,7 +10,7 @@
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
+;; the Free Software Foundation, either version 3 of the License, or c
 ;; (at your option) any later version.
 
 ;; This program is distributed in the hope that it will be useful,
@@ -2918,7 +2918,7 @@ Return nil if there is no such successor.  N should be nonzero.
 This implements the salient steps of Algorithm L (Lexicographic
 permutation generation) as described in DE Knuth's The Art of
 Computer Programming, Volume 4A / Combinatorial Algorithms,
-Part I, Addison-Wesley, 2011, Â§ 7.2.1.2, p. 319."
+Part I, Addison-Wesley, 2011, ¡ì 7.2.1.2, p. 319."
   (setq n (1- n))
   (let* ((l n)
          (j (1- n))

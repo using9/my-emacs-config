@@ -24,7 +24,7 @@
 ;;; address: git://github.com/minad/vertico
 (add-to-list 'load-path "~/.emacs.d/elpa/vertico")
 (add-to-list 'load-path "~/.emacs.d/elpa/vertico/extensions")
-(require 'vertico)
+(require 'vertico-autoloads)
 (vertico-mode)
 (with-eval-after-load 'vertico
   (define-key vertico-map "?" #'minibuffer-completion-help)
@@ -45,7 +45,7 @@
 ;; marginalia  ◊¢ Õ”√ minibuffer
 ;;; address: git://github.com/minad/marginalia
 (add-to-list 'load-path "~/.emacs.d/elpa/marginalia")
-(require 'marginalia)
+(require 'marginalia-autoloads)
 (marginalia-mode)
 (with-eval-after-load 'marginalia
   (add-to-list 'marginalia-prompt-categories '("\\<face\\>" . face))
@@ -68,7 +68,7 @@
 ;;===========================corfu =====================================
 ;;; address git://github.com/minad/corfu
 (add-to-list 'load-path "~/.emacs.d/elpa/corfu")
-(require 'corfu)
+(require 'corfu-autoloads)
 (global-corfu-mode)
 (setq corfu-cycle t
       corfu-preview-current t
@@ -117,7 +117,7 @@
 ;;; address: git://github.com/minad/consult
 (add-to-list 'load-path "~/.emacs.d/elpa/consult")
 (require 'consult)
-
+;;(require 'consult-autoloads)
 (global-set-key [f2] 'consult-recent-file)
 (global-set-key [remap switch-to-buffer] 'consult-buffer)
 (global-set-key [remap switch-to-buffer-other-window] 'consult-buffer-other-window)
