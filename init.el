@@ -30,6 +30,7 @@
 (require 'init-awesome-tray)
 (require 'init-undo-tree)
 (require 'init-windows)
-
+(require 'init-elfeed)
+(require 'init-auto-mark)
 (provide 'init)
 

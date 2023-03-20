@@ -27,9 +27,10 @@
 
 (global-set-key (kbd "C-\\") 'toggle-input-method)
 
-(setq-default pyim-punctuation-translate-p '(auto yes no))   
+(setq-default pyim-punctuation-translate-p '(auto))   
 (setq pyim-indicator-list (list #'pyim-indicator-with-cursor-color #'pyim-indicator-with-modeline))
-
+(define-key pyim-mode-map "." 'pyim-page-next-page)
+(define-key pyim-mode-map "," 'pyim-page-previous-page)
 
 (defun my-orderless-regexp (orig_func component)
   (let ((result (funcall orig_func component)))
@@ -38,5 +39,11 @@
 (setq debug-on-error t)
 ;;(pyim-isearch-mode 1)
 (global-set-key (kbd "M-i") 'pyim-convert-string-at-point)
+
+(defun my-orderless-regexp (orig-func component)
+  (let ((result (funcall orig-func component)))
+    (pyim-cregexp-build result)))
+
+(advice-add 'orderless-regexp :around #'my-orderless-regexp)
 
 (provide 'init-pyim)

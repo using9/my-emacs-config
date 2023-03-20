@@ -107,14 +107,9 @@
  create-lockfiles nil)
 
 (setq vc-make-backup-files nil)
-(if (eq system-type 'windows-nt)
-(set-face-attribute 'default nil :font  (font-spec :family "新宋体" :size 16 :powerline-scale 0.8))
-)
-;;(if (eq system-type 'windows-nt)
-;;	(set-face-attribute 'default nil :font  (font-spec :family "ÐÂËÎÌå" :size 16 :powerline-scale 0.8))
-;;  (dolist (charset '(kana han symbol cjk-misc bopomofo))
-;;	(set-fontset-font (frame-parameter nil 'font) charset
-;;                      (font-spec :family "ººÒÇÌÆÃÀÈË 55W" :size 18 :powerline-scale 0.8))) 
+(set-face-attribute 'default nil :font  (font-spec :family "������" :size 16 :powerline-scale 0.8))
+
+
 
 (setenv "PATH" (concat "~/.emacs.d/bin" ";"  (getenv "PATH"))  )
 
@@ -277,43 +272,6 @@
     (undo-more 1))
   (message "Buffer was completely undone"))
 
-;;; ------- will use awesome-tray ,comment this.
-;; (setq-default
-;;  mode-line-format
-;;  (list
-;;   ;; the buffer name; the file name as a tool tip
-;;   '(:eval (propertize " %+ " 'face 'font-lock-keyword-face
-;;                       ))
-;;   " "
-;;   '(:eval (propertize " %b " 'face 'font-lock-keyword-face
-;;                       'help-echo (buffer-file-name)))
-;;   ;; line and column
-;;   "(" ;; '%02' to set to 2 chars at least; prevents flickering
-;;   (propertize "L%02l" 'face 'font-lock-type-face) ","
-;;   (propertize "%01c" 'face 'font-lock-type-face)
-;;   ") "
-;;   "["
-;;   (propertize "%p" 'face 'font-lock-constant-face) ;; % above top
-;;   "/"
-;;   (propertize "%I" 'face 'font-lock-constant-face) ;; size
-;;   "] "
-;;   " ["
-;;   (propertize "%m" 'face 'font-lock-constant-face)
-;;   "] "
-;;     ;;; flycheck number
-;;   ;; " <"
-;;   ;; "%1 "
-;;   ;;  my-flycheck-mode-line
-;;   ;; "> "
-;;   " { "
-;;   '(:eval (propertize (format-time-string "%H:%M %b%dÈÕ %a") 'face 'font-lock-keyword-face
-;;                       'help-echo
-;;                       (concat (format-time-string "%c; ")
-;;                               (emacs-uptime "Uptime:%hh"))))
-;;   " } "
-
-;;   ))
-
 
 (setq-local macros_f "~/.emacs.d/macros") 
 (if (file-exists-p macros_f)
@@ -332,9 +290,9 @@
 
 (setq eww-mode-hook
       (lambda ()
-		(if (eq system-type 'windows-nt)
-			(set-face-attribute 'variable-pitch (selected-frame) :font (font-spec :family "新宋体" :size 14 :powerline-scale 0.8))
-		  )
+    
+			(set-face-attribute 'variable-pitch (selected-frame) :font (font-spec :family "������" :size 14 :powerline-scale 0.8))
+		  
 		(setq line-spacing 0.5)
 		))
 
