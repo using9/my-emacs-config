@@ -98,11 +98,11 @@
 (setq-default
  ;; make-backup-files t
  backup-by-copying t
- backup-directory-alist `(("." . "~/backups/"))
+ backup-directory-alist `(("." . "~/.backups/"))
  delete-old-versions t
  version-control t
  delete-by-moving-to-trash t
- kept-new-versions 8
+ kept-new-versions 8x
  kept-old-versions 4
  create-lockfiles nil)
 

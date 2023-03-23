@@ -3,6 +3,9 @@
 ;;; Code:
 ;;;
 
+(add-to-list 'load-path "~/.emacs.d/elpa/rainbow-delimiters")
+(require 'rainbow-delimiters)
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 (defun dired-open-files()
   "dired open file just type \"o\""
@@ -12,7 +15,6 @@
         (call-process-shell-command (format "\"%s\"" file-name) nil 0))
     (if(file-directory-p file-name)
         (call-process-shell-command (browse-url-of-dired-file) nil 0))))
-
 
 (defun open-config-file ()
   "open init.el file."
@@ -39,7 +41,6 @@
     (make-directory todaystr))
     (call-process-shell-command (concat "explorer " todaystr))  
 	)
-
 
 (defun move-text-internal (arg)
    (cond
@@ -90,18 +91,12 @@
   (vlf-mode)
   )
 
-;; (defun news()
-;;   "Start elfeed"
-;;   (interactive)
-;;   (require 'init-elfeed)
-;;   (elfeed)
-;;   )
-
 (defun gushi()
-  "Start stock-tracker"
+  "start achive"
   (interactive)
- (require 'init-stock)
-  (stock-tracker-start)
+  (add-to-list 'load-path "~/.emacs.d/elpa/achive")
+  (require 'achive)
+  (achive)
   )
 
  (if (file-exists-p "~/.emacs.d/lisp/work-path.el") 
@@ -115,12 +110,27 @@
   (require 'init-pyim)
   (pyim-activate)
   )
+
 (defun esu()
   "Start esup"
   (interactive)
   (add-to-list 'load-path "~/.emacs.d/elpa/esup")
   (require 'esup)
   (esup)
+  )
+
+(defun multiple()
+  "Start multiple-cursors"
+  (interactive)
+  (add-to-list 'load-path "~/.emacs.d/elpa/multiple-cursors")
+  (require 'multiple-cursors)
+  (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-M->") 'mc/skip-to-next-like-this)
+  (global-set-key (kbd "C-M-<") 'mc/skip-to-previous-like-this)
+  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+  (setq mc/insert-numbers-default 1)
   )
 
 (defun vi()
@@ -140,5 +150,12 @@
   (delete-other-frames)
   )
 
-(provide 'init-custom)
+(defun org-export-docx ()
+  (interactive)
+  (let ((docx-file (concat (file-name-sans-extension (buffer-file-name)) ".docx"))
+           (template-file "template.docx"))
+    (shell-command (format "pandoc %s -o %s --reference-doc=%s" (buffer-file-name) docx-file template-file))
+    (message "Convert finish: %s" docx-file)))
+
+(provide 'init-custom) 
 ;;; init-custom.el ends here
