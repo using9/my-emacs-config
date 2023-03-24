@@ -31,6 +31,5 @@
 (require 'init-undo-tree)
 (require 'init-windows)
 (require 'init-elfeed)
-
 (provide 'init)
 
