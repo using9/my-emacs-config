@@ -102,7 +102,7 @@
  delete-old-versions t
  version-control t
  delete-by-moving-to-trash t
- kept-new-versions 8x
+ kept-new-versions 8
  kept-old-versions 4
  create-lockfiles nil)
 
