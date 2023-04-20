@@ -32,7 +32,7 @@
 (setq switch-window-threshold 2)
 
 (setq switch-window-auto-resize-window t)
-(setq switch-window-default-window-size 0.8) ;80% of frame size
+(setq switch-window-default-window-size 0.6) ;80% of frame size
 (switch-window-mouse-mode) ;auto resize when switch window with mouse
 
 

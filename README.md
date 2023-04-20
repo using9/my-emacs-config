@@ -3,9 +3,10 @@
 
 # Install :
   + git: git clone https://github.com/using9/my-emacs-config.git ~/.emacs.d
-  + zip: download ,and unzip to ~/.emacs.d directory.
+  + zip: download zip file,and unzip to ~/.emacs.d directory.
 
-# List packages£º
+# List packages
+  + async
   + awesome-tray
   + cape
   + consult
@@ -15,11 +16,15 @@
   + esup
   + evil
   + flycheck
+  + goto-chg
   + marginalia
+  + multiple-cursors
   + orderless
   + powerline
   + pyim
-  + stock-tracker
+  + switch-window
   + undo-tree
   + vertico
   + vlfi
+  + xr
+  + yasnippet
