@@ -3,9 +3,6 @@
 ;;; Code:
 ;;;
 
-(add-to-list 'load-path "~/.emacs.d/elpa/rainbow-delimiters")
-(require 'rainbow-delimiters)
-(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 (defun dired-open-files()
   "dired open file just type \"o\""

@@ -8,6 +8,8 @@
 	  org-modules-loaded t
       org-odd-levels-only t
       org-startup-indented t)
+
+
 (setq org-list-demote-modify-bullet
       (quote (("+" . "-")
               ("-" . "+")
@@ -18,7 +20,7 @@
               ("B)" . "-")
               ("a)" . "-")
               ("b)" . "-")
-              ("A." . "-")
+              ("A." . "-") 
               ("B." . "-")
               ("a." . "-")
               ("b." . "-"))))
@@ -38,7 +40,10 @@
                                        ("=>" . "⇨")))
 (setq prettify-symbols-unprettify-at-point 'right-edge)
 (add-hook 'org-mode-hook 'prettify-symbols-mode)
-(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
+(add-hook 'org-mode-hook (lambda ()
+						   (setq truncate-lines nil)
+						   (variable-pitch-mode 1)
+						   visual-line-mode))
 
 
 

@@ -11,5 +11,6 @@ eshell
 notes
 lisp/work-path.el
 github_note.org
-.achive
+.gitignore
+url
 .mc-lists.el

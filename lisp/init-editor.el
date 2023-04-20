@@ -191,7 +191,7 @@
 (setq kill-do-not-save-duplicates t)
 
      ;;; eww inhibi
-(setq shr-inhibit-images t)
+;;(setq shr-inhibit-images t)
 
 (defun toggle-delete-other-windows ()
   "Delete other windows in frame if any, or restore previous window config."

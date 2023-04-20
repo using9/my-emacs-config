@@ -31,5 +31,6 @@
 (require 'init-undo-tree)
 (require 'init-windows)
 (require 'init-elfeed)
+(require 'init-yasnippet)
 (provide 'init)
 

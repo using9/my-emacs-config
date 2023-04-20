@@ -51,5 +51,12 @@
        :weight extra-bold
        :underline t))))
 
+(setq
+ browse-url-browser-function 'eww-browse-url ; Use eww as the default browser
+ shr-use-fonts  nil                          ; No special fonts
+ shr-use-colors nil                          ; No colours
+ shr-indentation 2                           ; Left-side margin
+ shr-width 70                                ; Fold text to 70 columns
+ eww-search-prefix "https://www.baidu.com/?q=")    
 
 (provide 'init-elfeed)
