@@ -141,6 +141,23 @@
   (define-key evil-normal-state-map "\C-q" 'evil-visual-block)
  )
 
+(defun vba()
+  "vba mode"
+  (interactive)
+  ;; (add-to-list 'load-path "~/.emacs.d/elpa/vba/auto-complete")
+  ;; (add-to-list 'load-path "~/.emacs.d/elpa/vba/emacs-vbasense")
+  ;; (add-to-list 'load-path "~/.emacs.d/elpa/vba/log4e")
+  ;; (add-to-list 'load-path "~/.emacs.d/elpa/vba/yaxception")
+  ;; (require 'init-vba)
+
+   (add-to-list 'load-path "~/.emacs.d/elpa/vba-mode/")
+  
+   (autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
+  (push '("\\.\\(?:frm\\|\\(?:ba\\|cl\\|vb\\)s\\)\\'" . visual-basic-mode)
+       auto-mode-alist)
+
+  )
+
 (defun only()
   "Delete other frames"
   (interactive)
