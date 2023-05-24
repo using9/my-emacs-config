@@ -263,6 +263,11 @@ disable it if you have any problems with your minibuffer appearence."
   :group 'awesome-tray
   :type 'boolean)
 
+(defcustom awesome-tray-meow-show-mode t
+  "If non-nil, display the current meow mode in the meow module."
+  :group 'awesome-tray
+  :type 'boolean)
+
 (defcustom awesome-tray-update-interval 1
   "Interval in seconds between updating the awesome-tray contents.
 
@@ -510,6 +515,7 @@ Example:
     ("org-pomodoro" . (awesome-tray-module-org-pomodoro-info awesome-tray-module-org-pomodoro-face))
     ("pdf-view-page" . (awesome-tray-module-pdf-view-page-info awesome-tray-module-pdf-view-page-face))
     ("flymake" . (awesome-tray-module-flymake-info nil))
+    ("meow" . (awesome-tray-module-meow-info awesome-tray-module-meow-face))
     ("mpd" . (awesome-tray-module-mpd-info awesome-tray-module-mpd-face))
     ("volume" . (awesome-tray-module-volume-info awesome-tray-module-volume-face))
     ("word-count" . (awesome-tray-module-word-count-info awesome-tray-module-word-count-face))
@@ -721,7 +727,9 @@ Requires `anzu', also `evil-anzu' if using `evil-mode' for compatibility with
                  (setq battery-status (battery-format " [%p%%]" battery-info)))
                 ((member battery-type '("off-line" "BAT" "Battery"))
                  (setq battery-type "OFF")
-                 (setq battery-status (battery-format " [%p%% %t]" battery-info))))
+                 (if (eq system-type 'darwin)
+                     (setq battery-status (battery-format " [%p%%]" battery-info))
+                     (setq battery-status (battery-format " [%p%% %t]" battery-info)))))
 
           ;; Update battery cache.
           (setq awesome-tray-battery-status-cache (concat battery-type battery-status)))
@@ -874,6 +882,13 @@ NAME is a string, typically a directory name."
           state)
       "")))
 
+(defun awesome-tray-module-meow-info ()
+  (with-demoted-errors
+      ""
+    (if (and (featurep 'meow) awesome-tray-meow-show-mode)
+        meow--indicator
+      "")))
+
 (defun awesome-tray--macro-recording ()
   "Display current evil macro being recorded."
   (if (featurep 'evil)
@@ -1024,7 +1039,10 @@ If right is non nil, replace to the right"
 (defun awesome-tray-get-frame-width ()
   "Only calculating a main Frame width, to avoid wrong width when new frame, such as `snails'."
   (if (display-graphic-p)
-      (with-selected-frame (car (last (frame-list)))
+      (with-selected-frame
+          (if (daemonp)
+              (car (last (butlast (frame-list))))
+            (car (last (frame-list))))
         (frame-width))
     (frame-width)))
 
@@ -1183,12 +1201,25 @@ If right is non nil, replace to the right"
 (defun awesome-tray-update ()
   "Get new text to be displayed."
   (interactive)
-  (let* ((tray-info (awesome-tray-build-active-info))
-         (minibuffer-info (current-message))
+  (let* ((tray-active-info (awesome-tray-build-active-info))
+         ;; Get minibuffer content.
+         (echo-message (current-message))
+         ;; Remove text property from content.
+         (echo-text (set-text-properties 0 (length echo-message) nil echo-message))
+         ;; Set empty string if `echo-text' not string.
+         (minibuffer-info (if (stringp echo-text) echo-text ""))
+         ;; Only fetch last line from content to calculate the width of left side minibuffer.
+         (minibuffer-last-line (car (last (split-string minibuffer-info "\n"))))
+         ;; Calculate blank length between message and active tray info.
          (blank-length (- (awesome-tray-get-frame-width)
-                          (string-width tray-info)
-                          (string-width (if minibuffer-info minibuffer-info "")))))
-    (awesome-tray-set-text (if (> blank-length 0) (awesome-tray-build-active-info) (awesome-tray-build-essential-info)))))
+                          (string-width tray-active-info)
+                          (string-width minibuffer-last-line))))
+    (awesome-tray-set-text
+     (if (> blank-length 0)
+         ;; Show active tray info if have blank.
+         tray-active-info
+       ;; Otherwise show essential tray info.
+       (awesome-tray-build-essential-info)))))
 
 (provide 'awesome-tray)
 

@@ -1,5 +1,6 @@
 (add-to-list 'load-path "~/.emacs.d/elpa/awesome-tray/")
 (require 'awesome-tray-autoloads)
 (setq awesome-tray-file-path-show-filename t)
+(setq awesome-tray-update-interval 0.1)
 (awesome-tray-mode 1)
 (provide 'init-awesome-tray)

@@ -3,13 +3,9 @@
 (setq-default elfeed-search-filter "@1-day-ago +unread ")
 (setq elfeed-show-mode-hook
       (lambda ()	
-			(set-face-attribute 'variable-pitch (selected-frame) :font (font-spec :family "ÐÂËÎÌå" :size 14 :powerline-scale 0.8))
-		  
-		(setq line-spacing 0.5) 
+
 		(setq elfeed-show-entry-switch #'switch-to-buffer)))
-(setq elfeed-search-mode-hook
-	  (lambda ()
-		(setq line-spacing 0.5)))
+
 
 (setq elfeed-feeds
       '("https://xueqiu.com/hots/topic/rss" 

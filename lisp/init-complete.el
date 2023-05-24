@@ -2,20 +2,26 @@
 ;;; init-complete.el --- Config for minibuffer completion
 ;;; Commentary:
 ;;; Code:
-;;; 
+;;;
 ;; =============== other requires ===========================================
   ;;;; consult require it
 (add-to-list 'load-path "~/.emacs.d/elpa/compat")
 ;;; ============== other require ends.=======================================
 
+
+(add-to-list 'load-path "~/.emacs.d/elpa/embark")
+      (with-eval-after-load 'embark
+        (require 'embark-consult)
+        (add-hook 'embark-collect-mode-hook 'embark-consult-preview-minor-mode))
+
 ;;; =========================================================================
 ;; orderless start  ÎÞÐò
 ;;; address: git://github.com/oantolin/orderless
 (add-to-list 'load-path "~/.emacs.d/elpa/orderless")
-(require 'orderless)
-(setq    completion-styles '(orderless)
+(require 'orderless-autoloads)
+(setq    completion-styles '(orderless basic)
 		 completion-category-defaults nil
-		 completion-category-overrides '((file (styles basic partial-completion))))
+		 completion-category-overrides '((file (styles basic)))) ;;partial-completion))))
 ;;; orderless ends
 ;;; =========================================================================
 
