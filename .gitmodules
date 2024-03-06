@@ -1,0 +1,90 @@
+[submodule "git/achive"]
+    path = git/achive
+    url = https://github.com/zakudriver/achive
+[submodule "git/async"]
+    path = git/async
+    url = https://github.com/jwiegley/emacs-async
+[submodule "git/avy"]
+    path = git/avy
+    url = https://github.com/abo-abo/avy
+[submodule "git/cal-china-x"]
+    path = git/cal-china-x
+    url = https://github.com/xwl/cal-china-x
+[submodule "git/cape"]
+    path = git/cape
+    url = https://github.com/minad/cape
+[submodule "git/compat"]
+    path = git/compat
+    url = https://github.com/emacs-compat/compat
+[submodule "git/consult"]
+    path = git/consult
+    url = https://github.com/minad/consult
+[submodule "git/marginalia"]
+    path = git/marginalia
+    url = https://github.com/minad/marginalia
+[submodule "git/corfu"]
+    path = git/corfu
+    url = https://github.com/minad/corfu
+[submodule "git/orderless"]
+    path = git/orderless
+    url = https://github.com/oantolin/orderless
+[submodule "git/embark"]
+    path = git/embark
+    url = https://github.com/oantolin/embark
+[submodule "git/pyim"]
+    path = git/pyim
+    url = https://github.com/tumashu/pyim
+[submodule "git/pyim-basedict"]
+    path = git/pyim-basedict
+    url = https://github.com/tumashu/pyim-basedict
+[submodule "git/elfeed"]
+    path = git/elfeed
+    url = https://github.com/skeeto/elfeed
+[submodule "git/evil"]
+    path = git/evil
+    url = https://github.com/emacs-evil/evil
+[submodule "git/general"]
+    path = git/general
+    url = https://github.com/noctuid/general.el
+[submodule "git/dash"]
+    path = git/dash
+    url = https://github.com/magnars/dash.el
+[submodule "git/switch-window"]
+    path = git/switch-window
+    url = https://github.com/dimitri/switch-window
+[submodule "git/vlfi"]
+    path = git/vlfi
+    url = https://github.com/m00natic/vlfi git/vlfi
+[submodule "git/xr"]
+    path = git/xr
+    url = https://github.com/mattiase/xr
+[submodule "git/yasnippet"]
+    path = git/yasnippet
+    url = http://github.com/joaotavora/yasnippet
+[submodule "git/queue"]
+    path = git/queue
+    url = http://www.dr-qubit.org/git/predictive
+[submodule "git/goto-chg"]
+    path = git/goto-chg
+    url = https://github.com/emacs-evil/goto-chg
+[submodule ".emacs.d/git/vundo"]
+    path = git/vundo
+    url = https://github.com/casouri/vundo
+[submodule "git/valign"]
+    path = git/valign
+    url = https://github.com/casouri/valign
+[submodule "git/markdown-mode"]
+    path = git/markdown-mode
+    url = https://github.com/jrblevin/markdown-mode
+[submodule "git/embark"]
+    path = git/embark
+    url = https://github.com/oantolin/embark
+[submodule "git/minions"]
+    path = git/minions
+    url = https://github.com/tarsius/minions
+[submodule "git/which-key"]
+    path = git/which-key
+    url = https://github.com/justbur/emacs-which-key
+[submodule "git/vertico"]
+    path = git/vertico
+    url = https://github.com/minad/vertico

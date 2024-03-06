@@ -6,25 +6,32 @@
   + zip: download zip file,and unzip to ~/.emacs.d directory.
 
 # List packages
+  + achive
   + async
-  + awesome-tray
+  + auto-mark
+  + avy
+  + cal-china-x
   + cape
+  + compat
   + consult
   + corfu
+  + dash
+  + diredfl
   + elfeed
   + embark
-  + esup
   + evil
-  + flycheck
   + goto-chg
   + marginalia
-  + multiple-cursors
+  + markdown-mode
+  + minions
   + orderless
-  + powerline
   + pyim
+  + pyim-basedict
   + switch-window
-  + undo-tree
+  + valign
   + vertico
   + vlfi
+  + vundo
+  + which-key
   + xr
   + yasnippet
