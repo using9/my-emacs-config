@@ -1,4 +1,5 @@
 ;;(require 'yasnippet)
-(yas-global-mode 1)
+(add-hook 'after-init-hook 'yas-global-mode)
+
 
 (provide 'yasnippet-config)

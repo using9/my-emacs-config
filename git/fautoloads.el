@@ -2192,6 +2192,129 @@ See `goto-last-change' for use of prefix argument.
 
 ;;;***
 ;;
+;;;### (autoloads nil "inf-ruby/inf-ruby" "inf-ruby/inf-ruby.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from inf-ruby/inf-ruby.el
+
+(defvar ruby-source-modes '(ruby-mode enh-ruby-mode) "\
+Used to determine if a buffer contains Ruby source code.
+If it's loaded into a buffer that is in one of these major modes, it's
+considered a ruby source file by `ruby-load-file'.
+Used by these commands to determine defaults.")
+
+(autoload 'inf-ruby-setup-keybindings "inf-ruby/inf-ruby" "\
+Hook up `inf-ruby-minor-mode' to each of `ruby-source-modes'.")
+
+(autoload 'inf-ruby-minor-mode "inf-ruby/inf-ruby" "\
+Minor mode for interacting with the inferior process buffer.
+
+The following commands are available:
+
+\\{inf-ruby-minor-mode-map}
+
+This is a minor mode.  If called interactively, toggle the
+`Inf-Ruby minor mode' mode.  If the prefix argument is positive,
+enable the mode, and if it is zero or negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `inf-ruby-minor-mode'.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
+\(fn &optional ARG)" t)
+
+(autoload 'inf-ruby "inf-ruby/inf-ruby" "\
+Run an inferior Ruby process in a buffer.
+With prefix argument, prompts for which Ruby implementation
+\(from the list `inf-ruby-implementations') to use.
+
+If there is a Ruby process running in an existing buffer, switch
+to that buffer. Otherwise create a new buffer.
+
+\(fn &optional IMPL)" t)
+
+(autoload 'run-ruby "inf-ruby/inf-ruby" "\
+Run an inferior Ruby process, input and output in a buffer.
+
+If there is a process already running in a corresponding buffer,
+switch to that buffer. Otherwise create a new buffer.
+
+The consecutive buffer names will be:
+`*NAME*', `*NAME*<2>', `*NAME*<3>' and so on.
+
+COMMAND defaults to the default entry in
+`inf-ruby-implementations'. NAME defaults to \"ruby\".
+
+Runs the hooks `comint-mode-hook' and `inf-ruby-mode-hook'.
+
+Type \\[describe-mode] in the process buffer for the list of commands.
+
+\(fn &optional COMMAND NAME)" t)
+
+(autoload 'inf-ruby-switch-setup "inf-ruby/inf-ruby" "\
+Modify `rspec-compilation-mode' and `ruby-compilation-mode'
+keymaps to bind `inf-ruby-switch-from-compilation' to `С-x C-q'.")
+
+(autoload 'inf-ruby-console-auto "inf-ruby/inf-ruby" "\
+Run the Ruby console command appropriate for the project.
+The command and the directory to run it from are detected
+automatically from `inf-ruby-console-patterns-alist' which
+contains the configuration for the known project types." t)
+
+(autoload 'inf-ruby-console-zeus "inf-ruby/inf-ruby" "\
+Run Rails console in DIR using Zeus.
+
+\(fn DIR)" t)
+
+(autoload 'inf-ruby-console-rails "inf-ruby/inf-ruby" "\
+Run Rails console in DIR.
+
+\(fn DIR)" t)
+
+(autoload 'inf-ruby-console-gem "inf-ruby/inf-ruby" "\
+Run IRB console for the gem in DIR.
+The main module should be loaded automatically.  If DIR contains a
+Gemfile, it should use the `gemspec' instruction.
+
+\(fn DIR)" t)
+
+(autoload 'inf-ruby-auto-enter "inf-ruby/inf-ruby" "\
+Switch to `inf-ruby-mode' if the breakpoint pattern matches the current line.
+Return the end position of the breakpoint prompt.")
+
+(autoload 'inf-ruby-auto-enter-and-focus "inf-ruby/inf-ruby" "\
+Switch to `inf-ruby-mode' on a breakpoint, select that window and set point.")
+
+(autoload 'inf-ruby-auto-exit "inf-ruby/inf-ruby" "\
+Return to the previous compilation mode if INPUT is a debugger exit command.
+
+\(fn INPUT)")
+
+(autoload 'inf-ruby-console-script "inf-ruby/inf-ruby" "\
+Run custom bin/console, console or console.rb in DIR.
+
+\(fn DIR)" t)
+
+(autoload 'inf-ruby-console-default "inf-ruby/inf-ruby" "\
+Run Pry, or bundle console, in DIR.
+
+\(fn DIR)" t)
+
+(autoload 'inf-ruby-file-contents-match "inf-ruby/inf-ruby" "\
+
+
+\(fn FILE REGEXP &optional MATCH-GROUP)")
+ (dolist (mode ruby-source-modes) (add-hook (intern (format "%s-hook" mode)) 'inf-ruby-minor-mode))
+
+(register-definition-prefixes "inf-ruby/inf-ruby" '("inf-ruby-" "ruby-" "run-ruby-"))
+
+;;;***
+;;
 ;;;### (autoloads nil "marginalia/marginalia" "marginalia/marginalia.el"
 ;;;;;;  (0 0 0 0))
 ;;; Generated autoloads from marginalia/marginalia.el
@@ -2700,6 +2823,48 @@ pyim 词库管理器。
 
 ;;;***
 ;;;;
+;;;### (autoloads nil "rainbow-delimiters/rainbow-delimiters" "rainbow-delimiters/rainbow-delimiters.el"
+;;;;;;  (0 0 0 0))
+;;; Generated autoloads from rainbow-delimiters/rainbow-delimiters.el
+
+(autoload 'rainbow-delimiters-mode "rainbow-delimiters/rainbow-delimiters" "\
+Highlight nested parentheses, brackets, and braces according to their depth.
+
+This is a minor mode.  If called interactively, toggle the
+`Rainbow-Delimiters mode' mode.  If the prefix argument is
+positive, enable the mode, and if it is zero or negative, disable
+the mode.
+
+If called from Lisp, toggle the mode if ARG is `toggle'.  Enable
+the mode if ARG is nil, omitted, or is a positive number.
+Disable the mode if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate `rainbow-delimiters-mode'.
+
+The mode's hook is called both when the mode is enabled and when
+it is disabled.
+
+\(fn &optional ARG)" t)
+
+(autoload 'rainbow-delimiters-mode-enable "rainbow-delimiters/rainbow-delimiters" "\
+Enable `rainbow-delimiters-mode'.")
+
+(autoload 'rainbow-delimiters-mode-disable "rainbow-delimiters/rainbow-delimiters" "\
+Disable `rainbow-delimiters-mode'.")
+
+(register-definition-prefixes "rainbow-delimiters/rainbow-delimiters" '("rainbow-delimiters-"))
+
+;;;***
+
+;;;### (autoloads nil "rainbow-delimiters/rainbow-delimiters-test"
+;;;;;;  "rainbow-delimiters/rainbow-delimiters-test.el" (0 0 0 0))
+;;; Generated autoloads from rainbow-delimiters/rainbow-delimiters-test.el
+
+(register-definition-prefixes "rainbow-delimiters/rainbow-delimiters-test" '("fontify-" "highlights-matching-" "should-do-nothing" "with-"))
+
+;;;***
+;;
 ;;;### (autoloads nil "switch-window/switch-window" "switch-window/switch-window.el"
 ;;;;;;  (0 0 0 0))
 ;;; Generated autoloads from switch-window/switch-window.el
@@ -3693,7 +3858,8 @@ See `yas-minor-mode' for more information on Yas minor mode.
 ;;;;;;  "compat/compat-26.el" "compat/compat-27.el" "compat/compat-28.el"
 ;;;;;;  "compat/compat-29.el" "dash/dash-functional.el" "elfeed/elfeed-pkg.el"
 ;;;;;;  "embark/embark-autoloads.el" "evil/evil-development.el" "evil/evil-keybindings.el"
-;;;;;;  "evil/evil-pkg.el" "evil/evil.el" "pyim/pyim-codes.el" "pyim/pyim-imobjs.el"
+;;;;;;  "evil/evil-pkg.el" "evil/evil.el" "inf-ruby/inf-ruby-autoloads.el"
+;;;;;;  "inf-ruby/inf-ruby-pkg.el" "pyim/pyim-codes.el" "pyim/pyim-imobjs.el"
 ;;;;;;  "which-key/which-key-tests.el" "xr/xr-test.el" "yasnippet/yasnippet-debug.el"
 ;;;;;;  "yasnippet/yasnippet-tests.el") (0 0 0 0))
 

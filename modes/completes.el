@@ -60,16 +60,13 @@
 (add-hook 'after-init-hook 'global-corfu-mode)
 
 (setq-default corfu-auto t
-              corfu-auto-delay 0.8
+              corfu-auto-delay 0.2
               corfu-auto-prefix 2
               corfu-preselect 'prompt
               corfu-echo-documentation 0.25
               corfu-scroll-margin 1
-              corfu-left-margin-width 0.5
-              corfu-right-margin-width 0.5
               corfu-preview-current 'insert
               corfu-cycle t
-              corfu-on-exact-match nil
               corfu-highlight t
               corfu-separator ?\s
               corfu-quit-no-match 'separator

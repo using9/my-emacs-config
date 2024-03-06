@@ -230,6 +230,19 @@
            (equal (selected-window) (next-window)))
       (winner-undo)
     (delete-other-windows)))
+;; winner config
+(with-eval-after-load 'winner-mode
+  (setq winner-boring-buffers '("*Completions*"
+                                "*Compile-Log*"
+                                "*inferior-lisp*"
+                                "*Fuzzy Completions*"
+                                "*Apropos*"
+                                "*Help*"
+                                "*cvs*"
+                                "*Buffer List*"
+                                "*Ibuffer*"
+                                "*esh command on file*"))
+  )
 
 (defun split-window-func-with-other-buffer2 ()
   (lambda (&optional arg)
@@ -299,7 +312,12 @@
   (setq recentf-save-file (expand-file-name "recentf" user-emacs-directory))
   (setq-default
    recentf-max-saved-items 200
-   recentf-exclude `("/tmp/" "/ssh:"  ,(concat package-user-dir "/.*-autoloads\\.el\\'" )))
+   recentf-exclude
+              '("\\.?cache" ".cask" "url" "COMMIT_EDITMSG\\'" "bookmarks"
+                "\\.\\(?:gz\\|gif\\|svg\\|png\\|jpe?g\\|bmp\\|xpm\\)$"
+                "\\.?ido\\.last$" "\\.revive$" "/G?TAGS$" "/.elfeed/"
+                "^/tmp/" "^/var/folders/.+$" "^/ssh:" "/persp-confs/"
+                (lambda (file) (file-in-directory-p file package-user-dir))))
   )
 
 (defun undo-all ()
@@ -345,7 +363,6 @@
       flymake-fringe-indicator-position 'right-fringe)
 
 
-
 ;; better long line show ?
 (setq-default bidi-paragraph-direction 'left-to-right)
 (setq-default bidi-inhibit-bpa t)
@@ -358,5 +375,7 @@
 
 
 ;;(set-language-environment "UTF-8")
+
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (provide 'editor)
 ;;; editor.el ends here

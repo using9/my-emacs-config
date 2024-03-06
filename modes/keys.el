@@ -116,8 +116,12 @@
 
 ;; pyim
 (global-set-key (kbd "C-\\") 'toggle-input-method)
-(provide 'keys)
+
 ;; flymake
 (global-set-key (kbd "M-n") #'flymake-goto-next-error)
 (global-set-key (kbd "M-p") #'flymake-goto-prev-error)
+(global-set-key (kbd "C-c f") #'flymake-show-buffer-diagnostics)
 ;;;
+
+(provide 'keys)
+;;; keys ends

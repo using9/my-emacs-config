@@ -4,10 +4,13 @@
 [submodule "git/async"]
     path = git/async
     url = https://github.com/jwiegley/emacs-async
+#    [submodule "git/auto-mark"]
+#    path = git/auto-mark
+#    url =
 [submodule "git/avy"]
     path = git/avy
     url = https://github.com/abo-abo/avy
-[submodule "git/cal-china-x"]
+[submodule "git/cal-china-x"
     path = git/cal-china-x
     url = https://github.com/xwl/cal-china-x
 [submodule "git/cape"]
@@ -88,3 +91,8 @@
 [submodule "git/vertico"]
     path = git/vertico
     url = https://github.com/minad/vertico
+    [submodule "git/rainbow-delimiters"]
+    path = git/rainbow-delimiters
+    url = https://github.com/Fanael/rainbow-delimiters
+
+
