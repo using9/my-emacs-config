@@ -25,6 +25,7 @@
   + markdown-mode
   + minions
   + orderless
+  + popper
   + pyim
   + pyim-basedict
   + switch-window
