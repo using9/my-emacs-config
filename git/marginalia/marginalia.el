@@ -5,7 +5,7 @@
 ;; Author: Omar Antolín Camarena <omar@matem.unam.mx>, Daniel Mendler <mail@daniel-mendler.de>
 ;; Maintainer: Omar Antolín Camarena <omar@matem.unam.mx>, Daniel Mendler <mail@daniel-mendler.de>
 ;; Created: 2020
-;; Version: 1.5
+;; Version: 1.6
 ;; Package-Requires: ((emacs "27.1") (compat "29.1.4.4"))
 ;; Homepage: https://github.com/minad/marginalia
 ;; Keywords: docs, help, matching, completion
@@ -87,30 +87,30 @@ displayed instead."
 (defcustom marginalia-annotator-registry
   (mapcar
    (lambda (x) (append x '(builtin none)))
-   '((command marginalia-annotate-command marginalia-annotate-binding)
-     (embark-keybinding marginalia-annotate-embark-keybinding)
-     (customize-group marginalia-annotate-customize-group)
-     (variable marginalia-annotate-variable)
-     (function marginalia-annotate-function)
-     (face marginalia-annotate-face)
-     (color marginalia-annotate-color)
-     (unicode-name marginalia-annotate-char)
-     (minor-mode marginalia-annotate-minor-mode)
-     (symbol marginalia-annotate-symbol)
-     (environment-variable marginalia-annotate-environment-variable)
-     (input-method marginalia-annotate-input-method)
-     (coding-system marginalia-annotate-coding-system)
-     (charset marginalia-annotate-charset)
-     (package marginalia-annotate-package)
-     (imenu marginalia-annotate-imenu)
-     (bookmark marginalia-annotate-bookmark)
-     (file marginalia-annotate-file)
-     (project-file marginalia-annotate-project-file)
-     (buffer marginalia-annotate-buffer)
-     (library marginalia-annotate-library)
-     (theme marginalia-annotate-theme)
-     (tab marginalia-annotate-tab)
-     (multi-category marginalia-annotate-multi-category)))
+   `((command ,#'marginalia-annotate-command ,#'marginalia-annotate-binding)
+     (embark-keybinding ,#'marginalia-annotate-embark-keybinding)
+     (customize-group ,#'marginalia-annotate-customize-group)
+     (variable ,#'marginalia-annotate-variable)
+     (function ,#'marginalia-annotate-function)
+     (face ,#'marginalia-annotate-face)
+     (color ,#'marginalia-annotate-color)
+     (unicode-name ,#'marginalia-annotate-char)
+     (minor-mode ,#'marginalia-annotate-minor-mode)
+     (symbol ,#'marginalia-annotate-symbol)
+     (environment-variable ,#'marginalia-annotate-environment-variable)
+     (input-method ,#'marginalia-annotate-input-method)
+     (coding-system ,#'marginalia-annotate-coding-system)
+     (charset ,#'marginalia-annotate-charset)
+     (package ,#'marginalia-annotate-package)
+     (imenu ,#'marginalia-annotate-imenu)
+     (bookmark ,#'marginalia-annotate-bookmark)
+     (file ,#'marginalia-annotate-file)
+     (project-file ,#'marginalia-annotate-project-file)
+     (buffer ,#'marginalia-annotate-buffer)
+     (library ,#'marginalia-annotate-library)
+     (theme ,#'marginalia-annotate-theme)
+     (tab ,#'marginalia-annotate-tab)
+     (multi-category ,#'marginalia-annotate-multi-category)))
   "Annotator function registry.
 Associates completion categories with annotation functions.
 Each annotation function must return a string,
@@ -118,10 +118,10 @@ which is appended to the completion candidate."
   :type '(alist :key-type symbol :value-type (repeat symbol)))
 
 (defcustom marginalia-classifiers
-  '(marginalia-classify-by-command-name
-    marginalia-classify-original-category
-    marginalia-classify-by-prompt
-    marginalia-classify-symbol)
+  (list #'marginalia-classify-by-command-name
+        #'marginalia-classify-original-category
+        #'marginalia-classify-by-prompt
+        #'marginalia-classify-symbol)
   "List of functions to determine current completion category.
 Each function should take no arguments and return a symbol
 indicating the category, or nil to indicate it could not
@@ -586,10 +586,12 @@ t cl-type"
     (marginalia--fields
      (:left (marginalia-annotate-binding cand))
      ((marginalia--symbol-class sym) :face 'marginalia-type)
-     ((cond
-       ((fboundp sym) (marginalia--function-doc sym))
-       ((facep sym) (documentation-property sym 'face-documentation))
-       (t (documentation-property sym 'variable-documentation)))
+     ((if (fboundp sym) (marginalia--function-doc sym)
+        (cl-loop
+         for doc in '(variable-documentation
+                      face-documentation
+                      group-documentation)
+         thereis (ignore-errors (documentation-property sym doc))))
       :truncate 1.0 :face 'marginalia-documentation)
      ((abbreviate-file-name (or (symbol-file sym) ""))
       :truncate -0.5 :face 'marginalia-file-name))))
@@ -652,7 +654,9 @@ keybinding since CAND includes it."
         ((pred hash-table-p) (propertize "#<hash-table>" 'face 'marginalia-value))
         ((pred syntax-table-p) (propertize "#<syntax-table>" 'face 'marginalia-value))
         ;; Emacs bug#53988: abbrev-table-p throws an error
-        ((and (pred vectorp) (guard (ignore-errors (abbrev-table-p val))))
+        ((guard (or (and (eval-when-compile (< emacs-major-version 30))
+                         (vectorp val) (ignore-errors (abbrev-table-p val)))
+                    (abbrev-table-p val)))
          (propertize "#<abbrev-table>" 'face 'marginalia-value))
         ((pred char-table-p) (propertize "#<char-table>" 'face 'marginalia-value))
         ;; Emacs 29 comes with callable objects or object closures (OClosures)
@@ -881,11 +885,13 @@ The string is transformed according to `marginalia--bookmark-type-transforms'."
 
 (defun marginalia-annotate-buffer (cand)
   "Annotate buffer CAND with modification status, file name and major mode."
-  (when-let (buffer (get-buffer cand))
-    (marginalia--fields
-     ((marginalia--buffer-status buffer))
-     ((marginalia--buffer-file buffer)
-      :truncate -0.5 :face 'marginalia-file-name))))
+  (when-let ((buffer (get-buffer cand)))
+    (if (buffer-live-p buffer)
+        (marginalia--fields
+         ((marginalia--buffer-status buffer))
+         ((marginalia--buffer-file buffer)
+          :truncate -0.5 :face 'marginalia-file-name))
+      (marginalia--fields ("(dead buffer)" :face 'error)))))
 
 (defun marginalia--full-candidate (cand)
   "Return completion candidate CAND in full.
@@ -1326,10 +1332,9 @@ Remember `this-command' for `marginalia-classify-by-command-name'."
   (with-current-buffer (window-buffer
                         (or (active-minibuffer-window)
                             (user-error "Marginalia: No active minibuffer")))
-    (let* ((pt (max 0 (- (point) (minibuffer-prompt-end))))
-           (metadata (completion-metadata (buffer-substring-no-properties
-                                           (minibuffer-prompt-end)
-                                           (+ (minibuffer-prompt-end) pt))
+    (let* ((end (minibuffer-prompt-end))
+           (pt (max 0 (- (point) end)))
+           (metadata (completion-metadata (buffer-substring-no-properties end (+ end pt))
                                           minibuffer-completion-table
                                           minibuffer-completion-predicate))
            (cat (or (completion-metadata-get metadata 'category)
