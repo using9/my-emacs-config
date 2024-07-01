@@ -2,14 +2,14 @@
 ;;; Commentary:
 ;;; Code:
 ;;;
-;;(load-theme 'misterioso)
-(load-theme 'leuven-dark)
+(load-theme 'modus-operandi)
+;;(load-theme 'leuven-dark)
 (cd "~")
 ;;	;(set-face-background 'show-paren-match "#262b36")
 ;;	;(set-face-foreground 'show-paren-match "#ffffff")
 (set-face-bold 'show-paren-match t)
 (set-frame-parameter (selected-frame) 'alpha (list 97 100))
-(add-to-list 'default-frame-alist '(alpha . (98 . 98)))
+(add-to-list 'default-frame-alist '(alpha . (85 . 60)))
 
 ;; desktop save
 (let ((desktopd  "~/.emacs.d/desktop-dir"))
@@ -60,6 +60,10 @@
 
 (remove-hook 'minibuffer-setup-hook 'winner-save-unconditionally)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(setq highlight-nonselected-windows nil)
+(setq fast-but-imprecise-scrolling t)
+(setq redisplay-skip-fontification-on-input t)
 
 (setq-default
  ad-redefinition-action 'accept
@@ -123,6 +127,8 @@
 (setq mode-line-position-column-line-format '(" %l:%c"))
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 (set-cursor-color "red")
+
+
 ;;; Uodo
 (setq   undo-limit (* 16 1024 1024))
 (setq undo-outer-limit (* 64 1024 1024))
@@ -172,12 +178,11 @@
   (auto-save-visited-mode t)
   )
 
-(require 'dired)
+;;(require 'dired)
 (with-eval-after-load 'dired
   (setq dired-auto-revert-buffer t
         dired-dwim-target t
         dired-hide-details-hide-symlink-targets t
-        dired-listing-switches "-alh --group-directoy"
         dired-ls-F-marks-symlinks nil
         dired-recursive-copies 'always
         diredfl-mode t
@@ -192,7 +197,7 @@
 
 (setq enable-recursive-minibuffers t ; Allow commands in minibuffers
       minibuffer-message-timeout 1
-      history-length 10000
+      history-length 1000
       history-delete-duplicates t
       savehist-save-minibuffer-history t
       savehist-additional-variables '(extended-command-history
@@ -273,18 +278,18 @@
 ;; (when (fboundp 'electric-pair-mode)
 ;;   (add-hook 'after-init-hook 'electric-pair-mode))
 ;;(add-hook 'after-init-hook 'electric-indent-mode)
-(add-hook 'after-init-hook 'winner-mode)
-(add-hook 'after-init-hook 'recentf-mode)
-(add-hook 'after-init-hook 'savehist-mode)
-(add-hook 'after-init-hook 'save-place-mode)
+(add-hook 'after-init-hook 'auto-revert-mode)
+(add-hook 'after-init-hook 'delete-selection-mode)
 (add-hook 'after-init-hook 'global-auto-revert-mode)
 (add-hook 'after-init-hook 'global-highlight-changes-mode)
 (add-hook 'after-init-hook 'global-hl-line-mode)
 (add-hook 'after-init-hook 'global-subword-mode)
-(add-hook 'after-init-hook 'auto-revert-mode)
-(add-hook 'after-init-hook 'transient-mark-mode)
-(add-hook 'after-init-hook 'delete-selection-mode)
+(add-hook 'after-init-hook 'recentf-mode)
+(add-hook 'after-init-hook 'save-place-mode)
+(add-hook 'after-init-hook 'savehist-mode)
 (add-hook 'after-init-hook 'show-paren-mode)
+(add-hook 'after-init-hook 'transient-mark-mode)
+(add-hook 'after-init-hook 'winner-mode)
 
 (setq blink-matching-paren nil)
 (setq show-paren-style 'expression
@@ -375,7 +380,6 @@
 
 
 ;;(set-language-environment "UTF-8")
-
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (provide 'editor)
 ;;; editor.el ends here

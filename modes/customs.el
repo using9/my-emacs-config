@@ -150,4 +150,4 @@
     (message "Convert finish: %s" docx-file)))
 
 (provide 'customs)
-;; ends customs
+;; customs.el end here.

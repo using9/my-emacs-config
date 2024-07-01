@@ -53,12 +53,11 @@
 ;; consult
 (add-hook 'completion-list-mode 'consult-preview-at-point-mode)
 (setq xref-show-xrefs-function #'consult-xref
-      xref-show-definitions-function #'consult-xref)
-(setq consult-narrow-key "<") ;; "C-+"
+      xref-show-definitions-function #'consult-xref
+      consult-narrow-key "<") ;; "C-+"
 
 ;;; corfu
 (add-hook 'after-init-hook 'global-corfu-mode)
-
 (setq-default corfu-auto t
               corfu-auto-delay 0.2
               corfu-auto-prefix 2
@@ -72,30 +71,44 @@
               corfu-quit-no-match 'separator
               corfu-excluded-modes '(eshell-mode lisp-mode))
 
-
+;; eshell
 (with-eval-after-load 'eshell
   (add-hook 'eshell-mode-hook (lambda () (setq-local corfu-auto nil))))
 
+;; abbrev
 (setq dabbrev-ignored-buffer-regexps
       '("\\.\\(?:pdf\\|jpe?g\\|png\\|bmp\\|info\\)\\'")
       )
-
-;; embark
-(with-eval-after-load 'embark
-  (require 'embark-consult)
-  (add-hook 'embark-collect-mode-hook 'embark-consult-preview-minor-mode))
-;;marginalia
-;; (marginalia-mode)
-;; (add-to-list 'marginalia-prompt-categories '("\\<face\\>" . face))
-;; (add-to-list 'marginalia-prompt-categories '("tab by name" . tab))
-
-;; abbrev
-
 (setq hippie-expand-try-functions-list
   '(try-complete-file-name-partially try-complete-file-name
      try-expand-all-abbrevs try-expand-dabbrev
      try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill
      try-complete-lisp-symbol-partially try-complete-lisp-symbol))
+
+;; embark
+(with-eval-after-load 'embark
+  (require 'embark-consult)
+  (add-hook 'embark-collect-mode-hook 'embark-consult-preview-minor-mode)
+  (setq embark-quit-after-action nil
+        prefix-help-command #'embark-prefix-help-command
+        embark-indicators '(embark-minimal-indicator
+                             embark-highlight-indicator
+                             embark-isearch-highlight-indicator)
+        embark-cycle-key "."
+        embark-help-key "?"
+        embark-candidate-collectors
+        (cl-substitute 'embark-sorted-minibuffer-candidates
+                       'embark-minibuffer-candidates
+                       embark-candidate-collectors) )
+  )
+
+
+;;marginalia
+;; (marginalia-mode)
+;; (add-to-list 'marginalia-prompt-categories '("\\<face\\>" . face))
+;; (add-to-list 'marginalia-prompt-categories '("tab by name" . tab))
+
+
 
 (provide 'completes)
 ;;; completes.el ends here

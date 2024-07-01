@@ -14,7 +14,10 @@
 
 
 ;; avy
-
+  (setq avy-background t
+        avy-style 'pre
+        avy-all-windows nil
+        avy-all-windows-alt t)
   (defun my-avy--regex-candidates (fun regex &optional beg end pred group)
     (let ((regex (pyim-cregexp-build regex)))
       (funcall fun regex beg end pred group)))
@@ -24,12 +27,10 @@
   (global-set-key (kbd "M-g w") 'avy-goto-word-1)
   (global-set-key (kbd "M-g e") 'avy-goto-word-0)
   (global-set-key (kbd "C-'") 'avy-goto-char-2)
-  (setq avy-background t
-        avy-style 'pre)
-
 
 ;
 ;;; dired keys
+(with-eval-after-load 'dired
 (define-key dired-mode-map "o" 'dired-open-files)
 (define-key dired-mode-map "h" 'dired-up-directory)
 (define-key dired-mode-map "j" 'dired-next-line)
@@ -37,9 +38,9 @@
 (define-key dired-mode-map "l" 'dired-single-buffer)
 (define-key ctl-x-map "\C-j" 'dired-jump)
 (define-key ctl-x-4-map "\C-j" 'dired-jump-other-window)
+)
 
 ;; swith-window-keys
-
 (global-set-key (kbd "C-x 0") 'switch-window-then-delete)
 (global-set-key (kbd "C-x 1") 'toggle-delete-other-windows)
 (global-set-key (kbd "C-x 2") (split-window-func-with-other-buffer2))
@@ -52,7 +53,6 @@
 (global-set-key (kbd "C-x 4 m") 'switch-window-then-compose-mail)
 (global-set-key (kbd "C-x 4 r") 'switch-window-then-find-file-read-only)
 (global-set-key (kbd "C-x o") 'switch-window)
-
 
 ;;; esc always quits
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
@@ -116,12 +116,22 @@
 
 ;; pyim
 (global-set-key (kbd "C-\\") 'toggle-input-method)
+(global-set-key (kbd "M-i") 'pyim-convert-string-at-point)
 
 ;; flymake
 (global-set-key (kbd "M-n") #'flymake-goto-next-error)
 (global-set-key (kbd "M-p") #'flymake-goto-prev-error)
 (global-set-key (kbd "C-c f") #'flymake-show-buffer-diagnostics)
 ;;;
+
+;; embark
+(with-eval-after-load 'embark
+  (global-set-key (kbd "C-.") 'embark-act)
+  (global-set-key (kbd  "C-h b")  ' embark-bindings)
+  (global-set-key (kbd   "C-h B")  ' embark-bindings-at-point)
+  (global-set-key (kbd   "M-n")  ' embark-next-symbol)
+  (global-set-key (kbd   "M-p")  ' embark-previous-symbol)
+  )
 
 (provide 'keys)
 ;;; keys ends
